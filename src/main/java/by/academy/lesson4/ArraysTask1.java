@@ -3,6 +3,7 @@ package by.academy.lesson4;
 import java.util.Arrays;
 import java.util.Random;
 
+/*
 public class ArraysTask1 {
     public static void main(String[] args) {
         int[] array = new int [2,4,6,8,10,12,14,16,18,20];
@@ -11,4 +12,4 @@ public class ArraysTask1 {
             System.out.println(array[i]);
         }
     }
-}
+}*/
