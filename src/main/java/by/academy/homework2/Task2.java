@@ -49,6 +49,6 @@ public class Task2 {
             }
             size = 0;
         }
-        System.out.println(words[index]);
+        System.out.println("Cлово, в котором число различных символов минимально: " + words[index]);
     }
 }
