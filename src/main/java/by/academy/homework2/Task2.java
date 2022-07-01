@@ -5,11 +5,9 @@ import java.util.Scanner;
 public class Task2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int minimalLetterCount = Integer.MAX_VALUE;
+        int minLengthWordPos = 0;
         int n;
-        int size = 0;
-        int min = 0;
-        int index = 0;
-        boolean b = true;
         System.out.println("Введите колличество слов");
         if (sc.hasNextInt()) {
             n = sc.nextInt();
@@ -19,36 +17,25 @@ public class Task2 {
         }
         String[] words = new String[n];
         sc.nextLine();
-        for (int i = 0; i < n; i++) {
-            System.out.println("Введите слово №" + (i + 1));
-            words[i] = sc.nextLine();
+        for (int w = 0; w < n; w++) {
+            System.out.println("Введите слово №" + (w + 1));
+            words[w] = sc.nextLine();
         }
-        for (int j = 0; j < words.length; j++) {
-            String word = words[j];
-            char[] letters = new char[word.length()];
-            for (int k = 0; k < word.length(); k++) {
-                if (k == 0) {
-                    letters[k] = word.charAt(k);
-                    size++;
-                } else {
-                    for (int l = 0; l < letters.length; l++) {
-                        if (letters[l] == word.charAt(j)) {
-                            b = false;
-                        }
-                    }
-                    if (b == true) {
-                        letters[j] = word.charAt(j);
-                        size++;
+        for (int i = 0; i < words.length; i++) {
+            StringBuilder wordWithoutDuplicates = new StringBuilder(words[i]);
+            for (int j = 0; j < wordWithoutDuplicates.length(); j++) {
+                for (int k = j + 1; k < wordWithoutDuplicates.length(); k++) {
+                    if (wordWithoutDuplicates.charAt(k) == wordWithoutDuplicates.charAt(j)) {
+                        wordWithoutDuplicates.deleteCharAt(k);
+                        k--;
                     }
                 }
-                b = true;
             }
-            if (min == 0 || min > size) {
-                min = size;
-                index = j;
+            if (wordWithoutDuplicates.length() < minimalLetterCount) {
+                minLengthWordPos = i;
+                minimalLetterCount = wordWithoutDuplicates.length();
             }
-            size = 0;
         }
-        System.out.println("Cлово, в котором число различных символов минимально: " + words[index]);
+        System.out.println(words[minLengthWordPos]);
     }
 }
