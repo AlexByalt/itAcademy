@@ -17,22 +17,22 @@ public class Task2 {
         }
         String[] words = new String[n];
         sc.nextLine();
-        for (int w = 0; w < n; w++) {
-            System.out.println("Введите слово №" + (w + 1));
-            words[w] = sc.nextLine();
+        for (int i = 0; i < n; i++) {
+            System.out.println("Введите слово №" + (i + 1));
+            words[i] = sc.nextLine();
         }
-        for (int i = 0; i < words.length; i++) {
-            StringBuilder wordWithoutDuplicates = new StringBuilder(words[i]);
-            for (int j = 0; j < wordWithoutDuplicates.length(); j++) {
-                for (int k = j + 1; k < wordWithoutDuplicates.length(); k++) {
-                    if (wordWithoutDuplicates.charAt(k) == wordWithoutDuplicates.charAt(j)) {
-                        wordWithoutDuplicates.deleteCharAt(k);
-                        k--;
+        for (int j = 0; j < words.length; j++) {
+            StringBuilder wordWithoutDuplicates = new StringBuilder(words[j]);
+            for (int k = 0; k < wordWithoutDuplicates.length(); k++) {
+                for (int l = k + 1; l < wordWithoutDuplicates.length(); l++) {
+                    if (wordWithoutDuplicates.charAt(l) == wordWithoutDuplicates.charAt(k)) {
+                        wordWithoutDuplicates.deleteCharAt(l);
+                        l--;
                     }
                 }
             }
             if (wordWithoutDuplicates.length() < minimalLetterCount) {
-                minLengthWordPos = i;
+                minLengthWordPos = j;
                 minimalLetterCount = wordWithoutDuplicates.length();
             }
         }
