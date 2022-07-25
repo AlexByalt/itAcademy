@@ -33,9 +33,9 @@ public class Main {
         deal.setBuyer(userOne);
         deal.setSeller(userTwo);
 
-        int choise = -1;
+        int option = -1;
         boolean tip = false;
-        String answer = "0";
+        String choise;
 
         Scanner sc = new Scanner(System.in);
         ;
@@ -43,8 +43,8 @@ public class Main {
             System.out.println("0: menu");
             System.out.println("+: add");
             System.out.println("-: remove");
-            answer = sc.next();
-            switch (answer) {
+            choise = sc.next();
+            switch (choise) {
                 case "+": {
                     System.out.println("menu:");
                     for (int i = 0; i < productList.length; i++) {
@@ -55,19 +55,19 @@ public class Main {
                         tip = false;
                         System.out.println("choose your product:");
                         if (sc.hasNextInt()) {
-                            choise = sc.nextInt();
+                            option = sc.nextInt();
 
-                            if (choise == 0) {
+                            if (option == 0) {
                                 break;
                             }
-                            if (choise < 1 || choise > productList.length) {
+                            if (option < 1 || option > productList.length) {
                                 System.out.println("error");
                                 tip = true;
                                 continue;
                             }
 
                             for (int i = 0; i < deal.getProducts().length; i++) {
-                                if (deal.getProduct(i) == productList[choise - 1] && deal.getProducts().length > 0) {
+                                if (deal.getProduct(i) == productList[option - 1] && deal.getProducts().length > 0) {
                                     tip = true;
                                     System.out.println("you've already added this product");
                                     break;
@@ -81,12 +81,12 @@ public class Main {
                             System.out.println("enter quantity");
                             if (sc.hasNextDouble()) {
                                 double q = sc.nextDouble();
-                                deal.addProduct(productList[choise - 1]);
-                                productList[choise - 1].setQuantity(q);
+                                deal.addProduct(productList[option - 1]);
+                                productList[option - 1].setQuantity(q);
                                 break;
                             }
                         }
-                    } while (choise >= 1 && choise <= productList.length || tip == true);
+                    } while (option >= 1 && option <= productList.length || tip == true);
                     break;
                 }
                 case "-": {
@@ -95,21 +95,21 @@ public class Main {
                         tip = false;
                         System.out.println("choose your product");
                         if (sc.hasNextInt()) {
-                            choise = sc.nextInt();
+                            option = sc.nextInt();
 
-                            if (choise == 0) {
+                            if (option == 0) {
                                 break;
                             }
-                            if (choise < 1 || choise > productList.length) {
+                            if (option < 1 || option > productList.length) {
                                 System.out.println("error");
                                 tip = true;
                                 continue;
                             }
 
                             for (int i = 0; i < deal.getProducts().length; i++) {
-                                if (deal.getProduct(i) == productList[choise - 1] && deal.getProducts().length > 0) {
-                                    deal.removeProduct(productList[choise - 1]);
-                                    productList[choise - 1].setQuantity(0);
+                                if (deal.getProduct(i) == productList[option - 1] && deal.getProducts().length > 0) {
+                                    deal.removeProduct(productList[option - 1]);
+                                    productList[option - 1].setQuantity(0);
                                     tip = false;
                                     break;
                                 }
@@ -121,15 +121,15 @@ public class Main {
                     break;
                 }
                 case "0": {
-                    System.out.println("good choise!");
+                    System.out.println("good option!");
                     break;
                 }
                 default: {
                     System.out.println("error");
-                    answer = "continue";
+                    choise = "continue";
                 }
             }
-        } while (answer.equals("+") || answer.equals("-") || answer.equals("continue"));
+        } while (choise.equals("+") || choise.equals("-") || choise.equals("continue"));
         System.out.println(Arrays.toString(deal.getProducts()));
         sc.close();
     }
